@@ -43,8 +43,10 @@ export default function Home() {
       </header>
       <div className={styles.cardWrap}>
         <div className={styles.card}>
-          <h1 className={styles.title}>REELS</h1>
-          <p className={styles.subtitle}>Enter your full name to continue</p>
+          <h1 className={styles.title}>Welcome</h1>
+          <p className={styles.subtitle}>
+            Enter your full name to continue to the downloader dashboard
+          </p>
           <form onSubmit={handleSubmit} className={styles.form}>
             <label htmlFor="fullName" className={styles.label}>
               Full name
