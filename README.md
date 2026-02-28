@@ -55,10 +55,12 @@ A small web app: users enter their full name on the first screen, it’s stored 
 
 After that, the site will run on Vercel with the same SQLite (Turso) database.
 
+**Important:** Vercel’s filesystem is read-only, so the app **cannot** use the local SQLite fallback in production. If you don’t set the Turso env vars, you’ll get an error like `ENOENT: mkdir '/var/task/data'`.
+
 ## Pages
 
 - **`/`** — Form: “Enter full name” → submit → name is saved and user is redirected to `/dashboard`.
-- **`/dashboard`** — Lists all stored names (and “Add name” link back to home).
+- **`/dashboard`** — Instagram URL input + download links.
 
 ## Database
 
