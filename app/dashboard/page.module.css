@@ -1,0 +1,154 @@
+.wrapper {
+  min-height: 100vh;
+  padding: 1.5rem;
+  padding-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(ellipse 90% 50% at 50% 0%, rgba(99, 102, 241, 0.08), transparent 55%),
+    var(--bg);
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.sectionSubtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.instaForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.instaInput {
+  width: 100%;
+  max-width: 460px;
+  padding: 1rem 1.15rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.instaInput::placeholder {
+  color: var(--muted);
+}
+
+.instaInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.instaButton {
+  width: 100%;
+  max-width: 460px;
+  padding: 1rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.instaButton:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.instaButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mediaList {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+}
+
+.mediaListTitle {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.mediaUl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mediaItem {
+  margin-bottom: 0.5rem;
+}
+
+.downloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.downloadLink:hover {
+  color: var(--accent-hover);
+}
+
+.footer {
+  width: 100%;
+  margin-top: auto;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.error {
+  color: var(--error);
+  font-size: 1rem;
+}

@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# env (do not commit secrets)
+.env
+.env*.local
+
+# next
+/.next/
+out/
+
+# misc
+.DS_Store
+*.pem
+debug.log
+npm-debug.log*
+.vercel
+
+# sqlite local (if used)
+*.db
+*.db-journal
+data/
