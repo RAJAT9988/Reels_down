@@ -1,14 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RKLogo, MadeBy } from "@/app/components/Branding";
 import styles from "./page.module.css";
 
 export default function Dashboard() {
+  const [name, setName] = useState("");
   const [instaUrl, setInstaUrl] = useState("");
   const [instaLoading, setInstaLoading] = useState(false);
   const [instaError, setInstaError] = useState("");
   const [mediaList, setMediaList] = useState([]);
+
+  const displayName = useMemo(() => (name || "").trim(), [name]);
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const q = (params.get("name") || "").trim();
+      const stored = (localStorage.getItem("rk_full_name") || "").trim();
+      const finalName = q || stored;
+      if (finalName) {
+        setName(finalName);
+        localStorage.setItem("rk_full_name", finalName);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   async function handleInstaSubmit(e) {
     e.preventDefault();
@@ -52,6 +70,11 @@ export default function Dashboard() {
 
       <div className={styles.content}>
         <section className={styles.section}>
+          {displayName && (
+            <p className={styles.greeting}>
+              Welcome, <span className={styles.greetingName}>{displayName}</span>
+            </p>
+          )}
           <h2 className={styles.sectionTitle}>Download Reels & Posts</h2>
           <p className={styles.sectionSubtitle}>
             Paste an Instagram post or reel URL to get download links.

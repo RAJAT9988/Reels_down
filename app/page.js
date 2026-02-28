@@ -21,16 +21,10 @@ export default function Home() {
     }
     setLoading(true);
     try {
-      const res = await fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ full_name: trimmed }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
-      router.push("/dashboard");
+      localStorage.setItem("rk_full_name", trimmed);
+      router.push(`/dashboard?name=${encodeURIComponent(trimmed)}`);
     } catch (err) {
-      setError(err.message || "Failed to save. Try again.");
+      setError(err.message || "Failed to continue. Try again.");
     } finally {
       setLoading(false);
     }
@@ -67,7 +61,7 @@ export default function Home() {
             </button>
           </form>
           <p className={styles.hint}>
-            You’ll be stored in the database and taken to the main dashboard.
+            You’ll be taken to the main dashboard.
           </p>
         </div>
       </div>

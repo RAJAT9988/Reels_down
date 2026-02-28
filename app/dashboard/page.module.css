@@ -31,6 +31,17 @@
   margin-bottom: 2.5rem;
 }
 
+.greeting {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.greetingName {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .sectionTitle {
   font-size: 1.75rem;
   font-weight: 700;
