@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { instagramGetUrl } from "instagram-url-direct";
+import instagramClient from "@/lib/instagram-client";
+const { instagramGetUrl } = instagramClient;
 
 export async function POST(request) {
   try {
@@ -18,7 +19,10 @@ export async function POST(request) {
       );
     }
 
-    const data = await instagramGetUrl(url);
+    const data = await instagramGetUrl(url, {
+      retries: 5,
+      delay: 2000,
+    });
     const details = Array.isArray(data?.media_details) ? data.media_details : [];
     const urlList = Array.isArray(data?.url_list) ? data.url_list : [];
 
@@ -60,9 +64,18 @@ export async function POST(request) {
     return NextResponse.json({ media });
   } catch (e) {
     console.error(e);
+    const msg = e.message || "";
+    const isBlocked =
+      msg.includes("401") ||
+      msg.includes("403") ||
+      msg.includes("status code 401") ||
+      msg.includes("status code 403");
+    const userMessage = isBlocked
+      ? "Instagram is blocking automated requests. Try again in a few minutes, or paste the link in your browser and use a downloader extension."
+      : msg || "Could not fetch Instagram media. Try again.";
     return NextResponse.json(
-      { error: e.message || "Could not fetch Instagram media. Try again." },
-      { status: 500 }
+      { error: userMessage },
+      { status: isBlocked ? 503 : 500 }
     );
   }
 }
